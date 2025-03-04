@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+
+
+  <!-- about-->
+  <div class="row mt-5">
+    <div class="col-md-10 offset-md-1">
+      <h3 style="margin-bottom:30px;" class="text-center heading-title">{{ data.name }} </h3>
+     
+  </div>
+</div>
+<div class="row">
+
+<div class="col-md-10 offset-md-1">
+    <div class="row d-flex align-items-center">
+        <div class="col-md-6">
+            {% if data.cover_picture == None or  data.cover_picture=="" %}
+                <img src="/static/uploads/default.jpg" alt="" class="img-fluid" style="height: 400px;width: 400px;">
+                {% else %}
+                <img src="/static/uploads/{{ data.cover_picture }}" alt="" class="img-fluid" style="height: 400px;width: 400px;">
+             {% endif %}
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12"> <h3> #{{ data.price }} </h3></div>
+                <div class="col-md-12"><p> {{ data.description }} </p></div>
+            </div>
+        </div>
+    </div>
+     <p class="text-center">
+      <a href="/center/pay/" class="noround btn-lg btn custom-btn col-4">Make a Booking</a>
+     </p>
+</div>
+</div>
+  <!-- end about-->
+
+   <!-- call to action for organizations -->
+<div class="row bg-light call-to-action-bg">
+  <div class="call-to-action">
+    <div class="col text-center pt-3">
+      <a href="register_tourist.html" class="btn blue-btn btn-lg noround col-4 mt-5" >Click here to Create a Tourist Account</a>
+     
+    </div>
+  </div>
+</div>
+<!-- call to action for organizations -->
+    
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <!-- about-->
+<div class="row mt-5">
+    <div class="col-md-10 offset-md-1">
+      <h3 style="margin-bottom:30px;" class="text-center heading-title"> CREATE A TOURIST CENTER ACCOUNT</h3>
+     
+  </div>
+</div>
+<div class="row py-5">
+
+<div class="col-md-10 offset-md-1">
+    {% with messages = get_flashed_messages(with_categories=True) %}
+      {% if messages %}
+        {% for cat,msg in messages %}
+            {% if cat == 'error' %}
+                <div class="alert alert-danger">{{ msg }}</div>
+            {% else %}
+                <div class="alert alert-success">{{ msg }}</div>
+            {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <p>The fields marks with <span class="text-danger">*</span> are required</p>
+    <form method="post" action="{{ url_for('center_register') }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <div class="row mb-3">
+          <label for="center" class="col-sm-2 col-form-label">Center Name<span class="text-danger">*</span></label>
+          <div class="col-sm-4">
+            <input type="text" name="center" class="form-control noround border-dark" id="center">
+          </div>
+          <label for="phone" class="col-sm-2 col-form-label">Phone Number</label>
+          <div class="col-sm-4">
+            <input type="text" name="phone" class="form-control noround border-dark" id="phone">
+          </div>
+        </div>
+        <div class="row mb-3">
+            <label for="email" class="col-sm-2 col-form-label">Email<span class="text-danger">*</span></label>
+            <div class="col-sm-4">
+              <input type="text" name="email" class="form-control noround border-dark" id="email">
+            </div>
+            <div class="col-sm-4">
+              <p id="feedback"></p>
+            </div>
+          </div>
+        <div class="row mb-3">
+            <label for="pass1" class="col-sm-2 col-form-label">Password<span class="text-danger">*</span></label>
+            <div class="col-sm-4">
+              <input type="password" name="pass1" class="form-control noround border-dark" id="password">
+            </div>
+            <label for="pass2" class="col-sm-2 col-form-label">Confirm Password</label>
+            <div class="col-sm-4">
+              <input type="password" name="pass2" class="form-control noround border-dark" id="pass2">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="state" class="col-sm-2 col-form-label">State</label>
+            <div class="col-sm-4">
+                <select class="form-select noround border-dark" aria-label="Default select example" name="state" id="state">
+                    <option selected>Please Select</option>
+                    {% for s in states %}
+                    <option value="{{ s.id }}">{{ s.name }}</option>
+                    {% endfor %}
+                  </select>
+            </div>
+            <label for="lga" class="col-sm-2 col-form-label">LGA</label>
+            <div class="col-sm-4">
+                <select class="form-select noround border-dark" aria-label="Default select example" id="lga" name="lga">
+                    <option selected>Please Select</option>
+                    <option value="1">Agege</option>
+                    <option value="2">Eti-osa</option>
+        
+                  </select>
+            </div>
+          </div>
+       
+     
+        <div class="row mb-3">
+            
+            <div class="col-sm-12 text-center">
+                <button type="submit" class="btn custom-btn col-6 noround">Create Account</button>
+            </div>
+          </div>
+       
+       
+      </form>
+
+ 
+</div>
+</div>
+  <!-- end about-->
+   
+{% endblock %}
+
+{% block customjs %}
+<script>
+  $(document).ready(function(){
+    //to get list of lga when state changes
+    $('#state').change(function(){
+      var stateid = $(this).val()
+      $('#lga').load('/center/get_lga/','id='+stateid);
+    });
+
+    //to check if email is avalibale
+    $('#email').change(function(){
+      var email = $(this).val();
+      $('#feedback').load("{{ url_for('check_email') }}", 'email='+email,function(){
+        $('#feedback').addClass('alert alert-info')
+      });
+    });
+  });
+</script>
+{% endblock %}

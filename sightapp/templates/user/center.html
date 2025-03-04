@@ -1,0 +1,299 @@
+{% extends 'base.html' %}
+<!-- search banner-->
+ 
+ <!-- end search banner-->
+  <!-- about-->
+
+{% block content %}
+
+<div class="row">
+
+<div class="col-md-3">
+      
+    {% include 'user/menu.html' %}
+    
+</div>
+<div class="col-md-9 p-3">
+    <!-- For the Dashboard-->
+     
+    <div class="row">
+        <div class="col-md-12">
+            <h5 class="my-3">Welcome Ebunoluwa!</h5>
+            <p>You are logged in, plesae make use of the side menu to carry out tasks on this platform, you can sign out when you are done.</p>
+           
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card text-bg-primary mb-3" style="max-width: 18rem;">
+                        <div class="card-header text-center">Total Pictures</div>
+                        <div class="card-body">
+                          <h5 class="card-title text-center">10</h5>                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-bg-info mb-3" style="max-width: 18rem;">
+                        <div class="card-header text-center">Total Bookings</div>
+                        <div class="card-body">
+                          <h5 class="card-title text-center">120</h5>                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-bg-primary mb-3" style="max-width: 18rem;">
+                        <div class="card-header text-center">Total Tickets</div>
+                        <div class="card-body">
+                          <h5 class="card-title text-center">10</h5>                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End the Dashboard-->
+     <!-- Profile-->
+    <div class="row">
+        <div class="col-md-12 my-3">
+            <h5 class="my-3">Profile Update </h5>
+    <form>
+        <div class="row mb-3">
+            
+          <label for="person" class="col-sm-2 col-form-label">Center Name</label>
+          <div class="col-sm-4">
+            <input type="text" name="person" class="form-control noround border-dark" id="person">
+          </div>
+          <label for="phone" class="col-sm-2 col-form-label">Phone Number</label>
+          <div class="col-sm-4">
+            <input type="text" name="phone" class="form-control noround border-dark" id="phone">
+          </div>
+        </div>
+        <div class="row mb-3">
+            <label for="bizhour" class="col-sm-2 col-form-label">Business Hours</label>
+            <div class="col-sm-4">
+              <input type="text" name="bizhour" class="form-control noround border-dark" id="bizhour">
+            </div>
+            <label for="phone" class="col-sm-2 col-form-label">Phone</label>
+            <div class="col-sm-4">
+              <input type="text" name="phone" class="form-control noround border-dark" id="phone">
+            </div>
+          </div>
+       
+          <div class="row mb-3">
+            <label for="state" class="col-sm-2 col-form-label">State</label>
+            <div class="col-sm-4">
+                <select class="form-select noround border-dark" aria-label="Default select example" name="state" id="state">
+                    <option selected>Please Select</option>
+                    <option value="1">Lagos</option>
+                    <option value="2">Abuja</option>
+                    <option value="3">Benin</option>
+                  </select>
+            </div>
+            <label for="lga" class="col-sm-2 col-form-label">LGA</label>
+            <div class="col-sm-4">
+                <select class="form-select noround border-dark" aria-label="Default select example" id="lga" name="lga">
+                    <option selected>Please Select</option>
+                    <option value="1">Agege</option>
+                    <option value="2">Eti-osa</option>
+                    
+                  </select>
+            </div>
+          </div>
+       
+     
+        <div class="row mb-3">
+            
+            <div class="col-sm-12 text-center">
+                <button type="submit" class="btn custom-btn col-6 noround">Update Account</button>
+            </div>
+          </div>
+       
+       
+      </form>
+
+ 
+        </div>
+    </div>
+    <!-- End profile-->
+
+
+    <!-- Manage bookings-->
+
+ <div class="row">
+    <div class="col-md-12">
+        
+        <h5 class="my-3">Bookings    </h5>
+        <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Date Booked</th>
+                <th scope="col">Fullname</th>
+                <th scope="col">Amount</th>                
+                <th scope="col">Status</th>
+                <th scope="col">Details</th>
+              </tr>
+            </thead>
+            <tbody>           
+             
+              <tr>
+                <td>1</td>
+                <td>10th June, 2024</td>
+                <td>Ahmed Tinubu</td>
+                <td>N20,000</td>
+                <td><button class="btn btn-secondary btn-sm noround"><i class="fa fa-thumbs-down"></i> Expired </button></td>
+                <td><a href="#">Details</a></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>12th June, 2024</td>
+                <td>Peter Obi</td>
+                <td>N15,000</td>
+                <td><button class="btn btn-success btn-sm noround"><i class="fa fa-thumbs-up"></i> Active</button></td>
+                <td><a href="#">Details</a></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>13th June, 2024</td>
+                <td>Atiku Abubakar</td>
+                <td>N8,000</td>
+                <td><button class="btn btn-secondary btn-sm noround"><i class="fa fa-thumbs-down"></i> Expired</button></td>
+                <td><a href="#">Details</a></td>
+              </tr>
+             
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    <!-- end manage bookings -->
+
+      <!-- Manage tickets-->
+
+ <div class="row">
+    <div class="col-md-12">
+        
+        <h5 class="my-3">Manage Tickets </h5>
+        <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Ticket Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>  
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>           
+             
+              <tr>
+                <td>1</td>
+                <td>Single Adult</td>
+                <td>admits one adult into the center</td>
+                <td>N10,000</td>
+                <td><button class="btn btn-dark btn-sm noround"> Active </button></td>
+                <td><a href="#">Edit</a> ¦ <a href="#">Delete</a> </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Single Child</td>
+                <td>admits one child into the center</td>
+                <td>N5,000</td>
+                <td><button class="btn btn-secondary btn-sm noround"> Disabled </button></td>
+                <td><a href="#">Edit</a> ¦ <a href="#">Delete</a> </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Festive</td>
+                <td>admits anyone into the center during festive season</td>
+                <td>N2,000</td>
+                <td><button class="btn btn-dark btn-sm noround"> Active </button></td>
+                <td><a href="#">Edit</a> ¦ <a href="#">Delete</a> </td>
+              </tr>
+             
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    <!-- end manage tickets -->
+    
+    
+   
+    
+ <div class="row">
+    <div class="col-md-12">
+        <h5 class="my-3">Photo Gallery <button class="btn btn-dark noround">Add New</button></h5>
+    <div class="row">
+        <!--START Picture :Text Pair -->
+        <div class="col-md-3">
+           <img src="/static/images/place-7.jpg" class="img-fluid">
+        </div>  
+        <div class="col-md-3">
+            <p>The waterfall area</p>
+            <a href="" class="btn custom-btn noround"><i class="fa fa-trash"></i> Delete</a>
+        </div>  
+        <!-- END Picture :Text Pair --> 
+         
+         
+
+        <!--START Picture :Text Pair -->
+        <div class="col-md-3">
+            <img src="/static/images/place-7.jpg" class="img-fluid">
+         </div>  
+         <div class="col-md-3">
+             <p>The waterfall area</p>
+             <a href="" class="btn custom-btn noround"><i class="fa fa-trash"></i> Delete</a>
+         </div>  
+         <!-- END Picture :Text Pair --> 
+
+
+
+         <!--START Picture :Text Pair -->
+        <div class="col-md-3">
+            <img src="/static/images/place-7.jpg" class="img-fluid">
+         </div>  
+         <div class="col-md-3">
+             <p>The waterfall area</p>
+             <a href="" class="btn custom-btn noround"><i class="fa fa-trash"></i> Delete</a>
+         </div>  
+         <!-- END Picture :Text Pair --> 
+
+
+         <!--START Picture :Text Pair -->
+        <div class="col-md-3">
+            <img src="/static/images/place-7.jpg" class="img-fluid">
+         </div>  
+         <div class="col-md-3">
+             <p>The waterfall area</p>
+             <a href="" class="btn custom-btn noround"><i class="fa fa-trash"></i> Delete</a>
+         </div>  
+         <!-- END Picture :Text Pair --> 
+
+
+         <!--START Picture :Text Pair -->
+        <div class="col-md-3">
+            <img src="/static/images/place-7.jpg" class="img-fluid">
+         </div>  
+         <div class="col-md-3">
+             <p>The waterfall area</p>
+             <a href="" class="btn custom-btn noround"><i class="fa fa-trash"></i> Delete</a>
+         </div>  
+         <!-- END Picture :Text Pair --> 
+       
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+  <!-- end about-->
+  
+  
+  
+ 
+ <!--Local 3rd Party-->
+ <!--section title-->
+ 
+<!-- end section title-->
+
+{% endblock content %}

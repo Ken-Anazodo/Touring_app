@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static' ,filename='bootstrap/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static' ,filename='fontawesome/css/all.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static' ,filename='css/main.css') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static' ,filename='favicon.png') }}">
+    <title>Cohort 28 Class Project - We Love Adventures!</title>
+</head>
+<body>
+
+
+    <div class="container-fluid">
+     
+        <!--Navigation-->
+        <div class="row " id="top">
+            <div class="col mx-0 px-0 border-bottom border-light">
+                <nav class="navbar navbar-expand-lg menu">
+                    <div class="container-fluid">
+                      <a class="navbar-brand" href="#">
+                        <img src="/static/images/sight-see-logo.png" width="130">
+                      </a>
+                      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                      </button>
+                      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                          <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/search/">Tourist Centers</a>
+                          </li>
+                        
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Register
+                            </a>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="/tourist/register/">As a Tourist</a></li>
+                              <li><a class="dropdown-item" href="/center/register/">As a center</a></li>
+                            
+                            </ul>
+                          </li>
+                        </ul>
+                      </div>
+                      {% if session.get('resort_id') == None %}
+                        <div><a href="/login/">Login</a></div>
+                      {% endif %}
+                      
+                      {% if session.get('resort_id') != None %}
+                      <div class="dropdown user-menu">
+                        <a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          <img src="/static/images/guide-1.jpg" width="30" style="border-radius: 50%;"> Hi {{ resort_deets.name }}
+                        </a>
+                      
+                        <ul class="dropdown-menu user-profile" style="border-radius: 0px;background-color: rgb(81, 53, 90);">
+                          <li><a class="dropdown-item" href="/center/profile/">Profile</a></li>
+                          <li><a class="dropdown-item" href="center_dashboard.html">Change Password</a></li>
+                          <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                      </div>
+                      {% endif %}
+
+                      <div style="width:3%"></div>
+
+                    </div>
+                </nav>
+
+
+                <!--Logged in Link-->
+                
+                <!-- End Logged in link-->
+            </div>
+        </div>
+<!--end navigation-->
+{% block content %}
+
+{% endblock %}
+ 
+<div class="row foot text-white">
+  <div class="col">
+    <p class="text-center my-3"> &copy; 2024 Developed By Me</p>
+  </div>
+</div>
+
+      </div>
+      <script src="/static/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="/static/js/jquery-3.7.1.min.js"></script>
+      <script>
+        $(document).ready(function(){
+          $(window).scroll(function(){
+            if($(window).scrollTop()>0){
+              $("nav").css("background-color","rgba(81, 53, 90,0.4)");
+              $('.user-menu').css("background-color","transparent");
+            }else{
+             $("nav").css("background-color","rgb(81, 53, 90)");
+            }
+          })
+        });
+      </script>
+      
+      {% block customjs %}
+        
+      {% endblock %}
+  
+</body>
+</html>

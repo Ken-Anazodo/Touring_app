@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+
+<!-- search banner-->
+<div class="row bg-breadcrumb banner">
+  <div class="col text-center py-5">
+      <h3 class="text-white display-3 mb-4 "> Find Your Next Adventure</h1>
+     <form>
+      <div class="row gx-0">
+        <div class="col-md-4 offset-md-2">
+           <input type="text" placeholder="search by keyword" class="form-control border-light noround">
+        </div>
+        <div class="col-md-2">
+           <select class="form-select noround border-light">
+            <option> select location</option>
+           </select>
+        </div>
+        <div class="col-md-2">
+           <button class="btn custom-btn col-12 noround border-light">Search</button>
+        </div>
+      </div>
+     </form>   
+  </div>
+</div>
+ <!-- end search banner-->
+  <!-- about-->
+  <div class="row mt-5">
+    <div class="col-md-10 offset-md-1">
+      <h3 style="margin-bottom:30px;" class="text-center heading-title">DO YOU MANAGE A TOURIST CENTER?</h3>
+     
+  </div>
+</div>
+<div class="row">
+
+<div class="col-md-10 offset-md-1">
+     <p>Essentially, online booking systems offer a way for customers to book a service. They can even pay for that service online through your website too. The more advanced software will allow clients to book via social media and on their cellphones. This means that people can book from anywhere at any time</p>
+
+     <p>Essentially, online booking systems offer a way for customers to book a service. They can even pay for them</p>
+     <p class="text-center">
+      <a href="register_center.html" class="noround btn-lg btn custom-btn col-4">Signup and Enlist</a>
+     </p>
+</div>
+</div>
+  <!-- end about-->
+
+  <!-- places to see -->
+        <div class="row mt-5 py-5 places" style="background-color: #F2F2F2 !important;">
+          <div class="col-md-10 offset-md-1">
+            <h3 style="margin-bottom:30px;" class="text-center heading-title">Get Tickets To Featured Places</h3> 
+            <p class="text-center py-3">Don't stay at home bored during your next holiday, here on sight-see: <a href="search.html">Click here to view all</a></p>
+            <div class="row">
+
+              {% if allresorts %}
+                {%for all in allresorts %}
+              <div class="col-md-4">
+                {% if all.cover_picture == "" or all.cover_picture == None %}
+                  <img src="/static/uploads/default.jpg" class="img-fluid">
+                {% else %}
+                  <img src="/static/uploads/{{ all.cover_picture }}" class="img-fluid">
+                {% endif %}
+                <div class="my-3">
+                  <h6>{{ all.name }}</h6>
+                  {% if all.description %}
+                    <p> {{ all.description[0:50] }}..... </p>
+                  {% endif %}
+                  <a href="/center/{{ all.id }}/" class="btn custom-btn noround">Details</a>
+                </div>
+              </div>
+              {% endfor %}
+              {% else %}
+              <div class="col-md-12">
+                <div class="alert alert-info">
+                  <h3>No Resort Has been added yet.</h3>
+                </div>
+              </div>
+              {% endif %}
+            
+            </div>
+          </div> 
+        </div>
+      
+       
+ <!-- end places to see -->  
+  
+   <!-- call to action for organizations -->
+<div class="row bg-light call-to-action-bg">
+  <div class="call-to-action">
+    <div class="col text-center pt-3">
+      <a href="register_tourist.html" class="btn blue-btn btn-lg noround col-4 mt-5" >Click here to Create a Tourist Account</a>
+     
+    </div>
+  </div>
+</div>
+   <!-- call to action for organizations -->
+    
+ <!--Local 3rd Party-->
+ <!--section title-->
+ <div class="row py-5">
+  <div class="col">    
+    <h3 class="text-center heading-titles">Partner Accommodations</h3>
+  </div>
+ </div>
+<!-- end section title-->
+
+<div class="row mb-5 justify-content-center"> 
+ <div class="col-md-10">
+  <div class="row">
+
+
+    {% if response_json == None %}
+      <div class="col-md-12">
+        <div class="alert alert-danger">Error Fetching Hotels from Partner</div>
+      </div>
+    {% else %}
+      {% if response_json.status == 1 %}
+        {% for hotel in response_json.data %}
+          <div class="col-md-4 mb-2">
+            <img src="{{ hotel.get('filename') }}" class="img-fluid">
+            <div class="descriptions pix">
+              <h6> {{ hotel.get('name') }} </h6>
+              <p>This is a suburb area of ajegunle</p>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+          <div class="col-md-12">
+             {{ response_json.data }}
+          </div>
+      {% endif %}
+    {% endif %}
+
+  </div>
+ </div>
+</div>
+<!-- end Local 3rd Party-->
+{% endblock %}

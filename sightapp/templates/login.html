@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+  <!-- about-->
+  <div class="row mt-5">
+    <div class="col-md-10 offset-md-1">
+      <h3 style="margin-bottom:30px;" class="text-center heading-title"> LOGIN</h3>
+        {% with messages = get_flashed_messages(with_categories=True) %}
+      {% if messages %}
+        {% for cat,msg in messages %}
+            {% if cat == 'error' %}
+                <div class="alert alert-danger">{{ msg }}</div>
+            {% else %}
+                <div class="alert alert-success">{{ msg }}</div>
+            {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+     
+  </div>
+</div>
+<div class="row py-2">
+
+<div class="col-md-8 offset-md-2">
+
+    <form action="/submit/login/" method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control border-dark noround" name="email" id="email" aria-describedby="emailHelp">
+          
+        </div>
+        <div class="mb-3">
+          <label for="pass" class="form-label">Password</label>
+          <input type="password" class="form-control border-dark noround" id="pass" name="pass">
+        </div>
+        <div class="mb-3 form-check">
+          <input type="radio" class="form-check-input" value="1" id="tourist" name="usertype">
+          <label class="form-check-label" for="tourist">Tourist</label>          
+        </div>
+        <div class="mb-3 form-check">
+            <input type="radio" class="form-check-input" value="2" id="center" name="usertype">
+            <label class="form-check-label" for="center">Tourist Center</label>          
+          </div>
+        <div class="col-sm-12 text-center mb-3">
+            <button type="submit" class="btn custom-btn col-6 noround">Login</button>
+        </div>
+      </form>
+ 
+ 
+</div>
+</div>
+  <!-- end about-->
+   
+{% endblock %}

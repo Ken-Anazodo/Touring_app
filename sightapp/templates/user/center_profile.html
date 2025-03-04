@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+<!-- search banner-->
+ 
+ <!-- end search banner-->
+  <!-- about-->
+
+{% block content %}
+
+<div class="row">
+
+<div class="col-md-3">
+      
+    {% include 'user/menu.html' %}
+    
+</div>
+<div class="col-md-9 p-3">
+    <!-- For the Dashboard-->
+      {% with messages = get_flashed_messages(with_categories=True) %}
+      {% if messages %}
+        {% for cat,msg in messages %}
+            {% if cat == 'error' %}
+                <div class="alert alert-danger">{{ msg }}</div>
+            {% else %}
+                <div class="alert alert-success">{{ msg }}</div>
+            {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  
+     <!-- Profile-->
+    <div class="row">
+        <div class="col-md-12 my-3">
+            <h5 class="my-3">Profile Update </h5>
+
+			
+    <form action="" method="post" novalidate enctype="multipart/form-data">
+      {{ pform.csrf_token }}
+
+
+
+      <div class="row mb-3">
+        {{ pform.name.label(class_="col-sm-2 col-form-label") }}
+          <div class="col-sm-4">
+            {{ pform.name(class_="form-control noround border-dark",value=resort_deets.name) }}
+            {% if pform.name.errors %}
+              {% for error in pform.name.errors  %}
+                  <p class="text-danger"> {{ error }} </p>
+              {% endfor %}
+            {% endif %}
+          </div>
+
+
+           {{ pform.phone.label(class_="col-sm-2 col-form-label") }}
+          <div class="col-sm-4">
+            {{ pform.phone(class_="form-control noround border-dark", value=resort_deets.phone ) }}
+            {% if pform.phone.errors %}
+              {% for error in pform.phone.errors  %}
+                  <p class="text-danger"> {{ error }} </p>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+
+
+
+        <div class="row mb-3">
+           {{ pform.available.label(class_="col-sm-2 col-form-label") }}
+            <div class="col-sm-4">
+               {{ pform.available(class_="form-select noround border-dark") }}
+            </div>
+
+            {{ pform.price.label(class_="col-sm-2 col-form-label") }}
+            <div class="col-sm-4">
+              {{ pform.price(class_="form-control noround border-dark", value=resort_deets.price ) }}
+
+              {% if pform.price.errors %}
+                {% for error in pform.price.errors  %}
+                  <p class="text-danger"> {{ error }} </p>
+                {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+
+
+
+          <div class="row mb-3">
+           {{ pform.cover.label(class_="col-sm-2 col-form-label") }}
+            <div class="col-sm-4">
+               {{ pform.cover(class_="form-control noround border-dark") }}
+                {% if pform.cover.errors %}
+                  {% for error in pform.cover.errors  %}
+                    <p class="text-danger"> {{ error }} </p>
+                  {% endfor %}
+                {% endif %}
+            </div>
+
+            {{ pform.description.label(class_="col-sm-2 col-form-label") }}
+            <div class="col-sm-4">
+               {{ pform.description(class_="form-control noround border-dark",value=resort_deets.description ) }}
+            </div>
+
+          </div>
+      
+       
+     
+        <div class="row mb-3">
+            
+            <div class="col-sm-12 text-center">
+                {{ pform.submit(class_="btn custom-btn col-6 noround") }}
+            </div>
+          </div>
+       
+       
+      </form>
+
+ 
+        </div>
+    </div>
+    <!-- End profile-->
+
+
+
+</div>
+</div>
+  <!-- end about-->
+  
+  
+  
+ 
+ <!--Local 3rd Party-->
+ <!--section title-->
+ 
+<!-- end section title-->
+
+{% endblock content %}
